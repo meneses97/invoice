@@ -8,15 +8,15 @@
 		<div class="modal-content">
 		  <div class="modal-header alert alert-info">
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<h4 class="modal-title" id="myModalLabel"><i class='glyphicon glyphicon-edit'></i> Editar categoría</h4>
+			<h4 class="modal-title" id="myModalLabel"><i class='glyphicon glyphicon-edit'></i> Editar Gabiente</h4>
 		  </div>
 		  <div class="modal-body">
-			<form class="form-horizontal" method="post" id="editar_categoria" name="editar_categoria">
+			<form class="form-horizontal" method="post" id="editar_gabinete" name="editar_gabinete">
 			<div id="resultados_ajax2"></div>
 			  <div class="form-group">
-				<label for="mod_nombre" class="col-sm-3 control-label">Nome</label>
+				<label for="mod_nombre" class="col-sm-3 control-label">Designação</label>
 				<div class="col-sm-8">
-				  <input type="text" class="form-control" id="mod_nombre" name="mod_nombre"  required>
+				  <input type="text" class="form-control" id="mod_gabinete" name="mod_gabinete"  required>
 					<input type="hidden" name="mod_id" id="mod_id">
 				</div>
 			  </div>
@@ -29,11 +29,7 @@
 				  <textarea class="form-control" id="mod_descripcion" name="mod_descripcion" ></textarea>
 				</div>
 			  </div>
-			  
-			 
-			 
-			 
-			 
+
 			
 		  </div>
 		  <div class="modal-footer">

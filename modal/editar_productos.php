@@ -13,6 +13,9 @@
 		  <div class="modal-body">
 			<form class="form-horizontal" method="post" id="editar_producto" name="editar_producto">
 			<div id="resultados_ajax2"></div>
+
+
+
 			  <div class="form-group">
 				<label for="mod_codigo" class="col-sm-3 control-label">Código</label>
 				<div class="col-sm-8">
@@ -21,40 +24,40 @@
 				</div>
 			  </div>
 			   <div class="form-group">
-				<label for="mod_nombre" class="col-sm-3 control-label">Nome</label>
+				<label for="mod_nombre" class="col-sm-3 control-label">Descrição do Bem</label>
 				<div class="col-sm-8">
 				  <textarea class="form-control" id="mod_nombre" name="mod_nombre" placeholder="Nombre del producto" required></textarea>
 				</div>
 			  </div>
-			  
+
 			  <div class="form-group">
 				<label for="mod_categoria" class="col-sm-3 control-label">Categoría</label>
 				<div class="col-sm-8">
 					<select class='form-control' name='mod_categoria' id='mod_categoria' required>
 						<option value="">Selecciona una categoría</option>
-							<?php 
+							<?php
 							$query_categoria=mysqli_query($con,"select * from categorias order by nombre_categoria");
 							while($rw=mysqli_fetch_array($query_categoria))	{
 								?>
-							<option value="<?php echo $rw['id_categoria'];?>"><?php echo $rw['nombre_categoria'];?></option>			
+							<option value="<?php echo $rw['id_categoria'];?>"><?php echo $rw['nombre_categoria'];?></option>
 								<?php
 							}
 							?>
-					</select>			  
+					</select>
 				</div>
 			  </div>
-			  
+
 			  <div class="form-group">
-				<label for="mod_precio" class="col-sm-3 control-label">Preço</label>
+				<label for="mod_precio" class="col-sm-3 control-label">Preço de Compra</label>
 				<div class="col-sm-8">
-				  <input type="text" class="form-control" id="mod_precio" 
+				  <input type="text" class="form-control" id="mod_precio"
 				  name="mod_precio" placeholder="Preço de venda dO producto"
                          required pattern="^[0-9]{1,10}(\.[0-9]{0,10})?$" title="Introduzir apenas 0 ou 10 decimais" maxlength="10">
 				</div>
 			  </div>
-			 
+
 			 <div class="form-group">
-				<label for="mod_stock" class="col-sm-3 control-label">Stock</label>
+				<label for="mod_stock" class="col-sm-3 control-label">Quantidade</label>
 				<div class="col-sm-8">
 				  <input type="number" min="0" class="form-control" id="mod_stock" name="mod_stock" placeholder="Inventario inicial" required  maxlength="8" readonly>
 				</div>
@@ -65,10 +68,12 @@
                     <div class="col-sm-8">
                         <select class='form-control' name='status_producto' id='status_producto' required>
                             <option value="1">Novo</option>
-                            <option value="1">Medio</option>
+                            <option value="2">Medio</option>
+                            <option value="3">Estragado</option>
                         </select>
                     </div>
                 </div>
+
 
                 <div class="form-group">
                     <label for="categoria" class="col-sm-3 control-label">Gabinete</label>
@@ -106,40 +111,42 @@
                     </div>
                 </div>
 
-<!--                <div class="form-group">-->
-<!--                    <label for="dataCompra" class="col-sm-3 control-label">Data de Compra</label>-->
-<!--                    <div class="col-sm-8">-->
-<!--                        <input type="date" class="form-control" id="mod_dataCompra" name="mod_dataCompra" placeholder="Data de Compra" required>-->
-<!--                    </div>-->
-<!--                </div>-->
+             <div class="form-group">
+                  <label for="dataCompra" class="col-sm-3 control-label">Data de Compra</label>
+                 <div class="col-sm-8">
+                     <input type="text" class="form-control" id="mod_dataCompra" name="mod_dataCompra" placeholder="Data de Compra" required>
+                 </div>
+             </div>
 
                 <div class="form-group">
-                    <label for="anoFabrico" class="col-sm-3 control-label">Ano de Fabrico</label>
+                    <label for="anoFabrico" class="col-sm-3 control-label">Data de Fabrico</label>
                     <div class="col-sm-8">
-                        <input type="number" class="form-control" id="mod_anoFabrico" name="mod_anoFabrico" placeholder="Ano de fabrico" required>
+                        <input type="text" class="form-control" id="mod_anoFabrico" name="mod_anoFabrico" placeholder="Ano de fabrico" required>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="vidaUtil" class="col-sm-3 control-label">Vida Util</label>
+                    <label for="vidaUtil" class="col-sm-3 control-label">Tempo de Vida</label>
                     <div class="col-sm-8">
                         <input type="number" class="form-control" id="mod_vidaUtil" name="mod_vidaUtil" placeholder="Vida util" required>
+
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="garantia" class="col-sm-3 control-label">Garantia</label>
+                    <label for="garantia" class="col-sm-3 control-label">Termos de Garantia</label>
                     <div class="col-sm-8">
-                        <select class='form-control' name='mod_garantia' id='mod_garantia' required>
-                            <option value="Sim">Sim</option>
-                            <option value="Nao">Nao</option>
-                        </select>
+
+                        <textarea  class="form-control" id="mod_garantia" name="mod_garantia"
+                                  placeholder="Termos de Garantia" required></textarea>
+
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="observacao" class="col-sm-3 control-label">Observacao</label>
+                    <label for="observacao" class="col-sm-3 control-label">Observações Gerais</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="mod_observacao" name="mod_observacao" placeholder="Observacao">
+                        <textarea  class="form-control" id="mod_observacao"
+                                   name="mod_observacao" placeholder="Observacao"></textarea>
                     </div>
                 </div>
 

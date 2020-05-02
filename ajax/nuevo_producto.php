@@ -5,11 +5,11 @@ include('is_logged.php');//Archivo verifica que el usario que intenta acceder a 
 	if (empty($_POST['codigo'])) {
            $errors[] = "Código vazio";
         } else if (empty($_POST['nombre'])){
-			$errors[] = "Nome do produto vazio";
+			$errors[] = "Nome do bem vazio";
 		} else if ($_POST['stock']==""){
-			$errors[] = "Stock do produto vazio";
+			$errors[] = "Quantidade vazio";
 		} else if (empty($_POST['precio'])){
-			$errors[] = "Preço de venda vazio";
+			$errors[] = "Preço de compra vazio";
 		} else if (
 			!empty($_POST['codigo']) &&
 			!empty($_POST['nombre']) &&

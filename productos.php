@@ -86,10 +86,24 @@
 				 <img class="item-img img-responsive" src="img/stock.png" alt=""> 
 				  <br>
                     <a href="#" class="btn btn-danger" onclick="eliminar('<?php echo $row['id_producto'];?>')" title="Eliminar"> <i class="glyphicon glyphicon-trash"></i> Eliminar </a> 
-					<a href="#myModal2" data-toggle="modal" data-codigo='<?php echo $row['codigo_producto'];?>' data-nombre='<?php echo $row['nombre_producto'];?>' data-categoria='<?php echo $row['id_categoria']?>' data-precio='<?php echo $row['precio_producto']?>' data-stock='<?php echo $row['stock'];?>' data-id='<?php echo $row['id_producto'];?>' data-fabricante='<?php echo $row['fabricante'];?>' data-gabinete='<?php echo $row['idgabinete'];?>'
-                       data-modelo='<?php echo $row['modelo'];?>' data-numeroserie='<?php echo $row['numero_serie'];?>' data-vidautil='<?php echo $row['vida_util'];?>' data-garantia='<?php echo $row['garantia'];?>'
-                       data-observacao='<?php echo $row['observacao'];?>' data-datacompra='<?php echo $row['data_compra'];?>'
-                       data-fabrico='<?php echo $row['ano_fabrico'];?>' class="btn btn-info" title="Editar"> <i class="glyphicon glyphicon-pencil"></i> Editar </a>
+					<a href="#myModal2" data-toggle="modal"
+                       data-codigo='<?php echo $row['codigo_producto'];?>'
+                       data-nombre='<?php echo $row['nombre_producto'];?>'
+                       data-categoria='<?php echo $row['id_categoria']?>'
+                       data-precio='<?php echo $row['precio_producto']?>'
+                       data-stock='<?php echo $row['stock'];?>'
+                       data-id='<?php echo $row['id_producto'];?>'
+                       data-fabricante='<?php echo $row['fabricante'];?>'
+                       data-gabinete='<?php echo $row['idgabinete'];?>'
+                       data-modelo='<?php echo $row['modelo'];?>'
+                       data-numeroserie='<?php echo $row['numero_serie'];?>'
+                       data-vidautil='<?php echo $row['vida_util'];?>'
+                       data-garantia='<?php echo $row['garantia'];?>'
+                       data-observacao='<?php echo $row['observacao'];?>'
+                       data-datacompra='<?php echo $row['data_compra'];?>'
+                       data-fabrico='<?php echo $row['ano_fabrico'];?>'
+                       class="btn btn-info" title="Editar">
+                        <i class="glyphicon glyphicon-pencil"></i> Editar </a>
 					
               </div>
 			  
@@ -99,7 +113,6 @@
                           <tr class="alert alert-info">
                               <th> Codigo </th>
                           <th>Produto</th>
-
                           <th>Qtd. Stock</th>
                               <th>Preço de Venda</th>
                           </tr>
@@ -217,8 +230,6 @@ $( "#editar_producto" ).submit(function( event ) {
 
 	$('#myModal2').on('show.bs.modal', function (event) {
 
-
-
         var button = $(event.relatedTarget) // Button that triggered the modal
 		var codigo = button.data('codigo') // Extract info from data-* attributes
 		var nombre = button.data('nombre')
@@ -236,17 +247,20 @@ $( "#editar_producto" ).submit(function( event ) {
         var datacompra = button.data('datacompra')
         var anoFabrico = button.data('fabrico')
 
+       // alert(datacompra+"/"+fabricante)
+
 
 		var modal = $(this)
         modal.find('.modal-body #mod_fabricante').val(fabricante)
         modal.find('.modal-body #mod_gabinete').val(gabinete)
         modal.find('.modal-body #mod_numeroSerie').val(numeroserie)
-        // modal.find('.modal-body #mod_dataCompra').val(datacompra)
+        modal.find('.modal-body #mod_dataCompra').val(datacompra)
         modal.find('.modal-body #mod_anoFabrico').val(anoFabrico)
         modal.find('.modal-body #mod_vidaUtil').val(vidautil)
         modal.find('.modal-body #mod_modelo').val(modelo)
         modal.find('.modal-body #mod_observacao').val(observacao)
 		modal.find('.modal-body #mod_codigo').val(codigo)
+        modal.find('.modal-body #mod_garantia').val(garantia)
 		modal.find('.modal-body #mod_nombre').val(nombre)
 		modal.find('.modal-body #mod_categoria').val(categoria)
 		modal.find('.modal-body #mod_precio').val(precio)

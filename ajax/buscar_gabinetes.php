@@ -1,10 +1,5 @@
 <?php
 
-	/*-------------------------
-	Autor: Obed Alvarado
-	Web: obedalvarado.pw
-	Mail: info@obedalvarado.pw
-	---------------------------*/
 	include('is_logged.php');//Archivo verifica que el usario que intenta acceder a la URL esta logueado
 	/* Connect To Database*/
 	require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
@@ -13,42 +8,41 @@
 	$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
 	if (isset($_GET['id'])){
 		$id_categoria=intval($_GET['id']);
-		$query=mysqli_query($con, "select * from gabinete where idgabinete='".$id_categoria."'");
+		$query=mysqli_query($con, "select gabinete.idgabinete from gabinete, products
+where gabinete.idgabinete = products.idgabinete
+and gabinete.idgabinete ='".$id_categoria."'");
 		$count=mysqli_num_rows($query);
-		if ($count==0){
-			if ($delete1=mysqli_query($con,"DELETE FROM gabinete WHERE id_categoria='".$id_categoria."'")){
+
+		if ($count == 0){
+			if ($delete1=mysqli_query($con,"DELETE FROM gabinete WHERE idgabinete='".$id_categoria."'")){
 			?>
 			<div class="alert alert-success alert-dismissible" role="alert">
 			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			  <strong>Aviso!</strong> Datos eliminados exitosamente.
+			  <strong>Aviso!</strong> Dados eliminados exitosamente.
 			</div>
 			<?php 
 		}else {
 			?>
 			<div class="alert alert-danger alert-dismissible" role="alert">
 			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			  <strong>Error!</strong> Lo siento algo ha salido mal intenta nuevamente.
+			  <strong>Error!</strong>Problemas com cadastro tem produtos com problemas no cadastro
 			</div>
 			<?php
-			
 		}
-			
 		} else {
 			?>
 			<div class="alert alert-danger alert-dismissible" role="alert">
 			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			  <strong>Error!</strong> No se pudo eliminar ésta  categoría. Existen productos vinculados a ésta categoría. 
+			  <strong>Error!</strong> No se podo eliminar este Gabinete. Existem inventarios vinculados.
 			</div>
 			<?php
 		}
-		
-		
-		
 	}
+
 	if($action == 'ajax'){
 		// escaping, additionally removing everything that could be (html/javascript-) code
          $q = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q'], ENT_QUOTES)));
-		 $aColumns = array('descricao, codigo');//Columnas de busqueda
+		 $aColumns = array('descricao');//Columnas de busqueda
 		 $sTable = "gabinete";
 		 $sWhere = "";
 		if ( $_GET['q'] != "" )
@@ -73,12 +67,11 @@
 		$row= mysqli_fetch_array($count_query);
 		$numrows = $row['numrows'];
 		$total_pages = ceil($numrows/$per_page);
-		$reload = './clientes.php';
+		$reload = './gabinete.php';
+
 		//main query to fetch the data
 		$sql="SELECT * FROM  $sTable $sWhere LIMIT $offset,$per_page";
-		
-		//echo $sql;
-		
+
 		$query = mysqli_query($con, $sql);
 		//loop through fetched data
 		if ($numrows>0){
@@ -86,7 +79,7 @@
 			?>
 			<div class="table-responsive">
 			  <table class="table">
-				<tr  class="success">
+				<tr  class="warning">
 					<th>Codigo</th>
 					<th>Descrição</th>
 					<th>Data de Registo</th>
@@ -108,7 +101,10 @@
 						<td><?php echo $date_added;?></td>
 						
 					<td class='text-right'>
-						<a href="#" class='btn btn-default' title='Editar categoría' data-nombre='<?php echo $nombre_categoria;?>' data-descripcion='<?php echo $descripcion_categoria?>' data-id='<?php echo $id_categoria;?>' data-toggle="modal" data-target="#myModal2"><i class="glyphicon glyphicon-edit"></i></a> 
+						<a href="#" class='btn btn-default' title='Editar categoría' data-gabinete='<?php echo $nombre_categoria;?>'
+                           data-descripcion='<?php echo $descripcion_categoria?>'
+                           data-id='<?php echo $id_categoria;?>' data-toggle="modal" data-target="#myModal2">
+                            <i class="glyphicon glyphicon-edit"></i></a>
 						<a href="#" class='btn btn-default' title='Eliminar categoría' onclick="eliminar('<?php echo $id_categoria; ?>')"><i class="glyphicon glyphicon-trash"></i> </a>
 					</td>
 						

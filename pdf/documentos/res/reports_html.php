@@ -69,23 +69,40 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 
 		  <td style="width:25%;"><?php echo date("d/m/Y");?></td>
 		   <td style="width:40%;" >
-				Análise de Stock
+               Inventrio de Bens e Materiais
 		   </td>
         </tr>
 
     </table>
 	<br>
+
+    <?php
+        $sql_r = 'SELECT  products.id_categoria, products.idgabinete, 
+categorias.nombre_categoria, gabinete.codigo, gabinete.descricao
+FROM products INNER JOIN categorias ON products.id_categoria = categorias.id_categoria
+INNER JOIN gabinete ON gabinete.idgabinete = products.idgabinete
+ GROUP BY products.id_categoria, products.idgabinete';
+
+        $linha = mysqli_query($con, $sql_r);
+    while ($rl=mysqli_fetch_array($linha)){
+    ?>
+        <div style="background: #e3e3e3; padding: 7px;"><strong>
+            <?php echo $rl['nombre_categoria'].' /'.strtoupper($rl['descricao']) ?></strong></div>
   
     <table cellspacing="0" style="width: 100%; text-align: left; font-size: 10pt;">
         <tr>
-            <th style="width: 10%;"  class='midnight-blue'>#</th>
-            <th style="width: 55%;"  class='midnight-blue'>Nome do Produto</th>
-            <th style="width: 15%;"  class='midnight-blue'>Qtd. Stock</th>
+            <th style="width: 15%;"  class='midnight-blue'>Codigo</th>
+            <th style="width: 50%;"  class='midnight-blue'>Descrição do Bem</th>
+            <th style="width: 15%;"  class='midnight-blue'>Quantidade</th>
             <th style="width: 20%;"  class='midnight-blue'>Data de Entrada</th>
         </tr>
 <?php
 $nums=1;
-$sql = "select * from products where status_producto = 1";
+$cod_gabinete = $rl['idgabinete'];
+$cod_categoria = $rl['id_categoria'];
+
+$sql = "select * from products where status_producto = 1 
+AND products.id_categoria='$cod_categoria' AND products.idgabinete='$cod_gabinete'";
 
 if ($session_id != 'all'){
     $sql.=" AND products.id_categoria='$session_id'";
@@ -107,6 +124,7 @@ while ($row=mysqli_fetch_array($results_x))
         $data_entrada = $row['date_added'];
         $stock = $row['stock'];
 
+
 	if (($nums%2) == 0){
 		$clase="clouds";
 	} else {
@@ -115,8 +133,8 @@ while ($row=mysqli_fetch_array($results_x))
 
 	?>
         <tr>
-            <td class='<?php echo $clase;?>' style="width: 10%; text-align: center"><?php echo $codigo_producto; ?></td>
-            <td class='<?php echo $clase;?>' style="width: 55%; text-align: left"><?php echo $nombre_producto;?></td>
+            <td class='<?php echo $clase;?>' style="width: 15%; text-align: left"><?php echo $rl['codigo'] .' /'.$codigo_producto  ?></td>
+            <td class='<?php echo $clase;?>' style="width: 50%; text-align: left"><?php echo $nombre_producto;?></td>
             <td class='<?php echo $clase;?>' style="width: 15%; text-align: center"><?php echo $stock;?></td>
             <td class='<?php echo $clase;?>' style="width: 20%; text-align: right"><?php echo $data_entrada;?></td>
         </tr>
@@ -126,6 +144,8 @@ while ($row=mysqli_fetch_array($results_x))
 
 ?>
     </table><br>
+
+<?php } ?>
     <div style="background: #e3e3e3; padding: 10px; width: 49%"><i style="font-size:11pt;text-align:left; ">Documento processado por computador</i></div>
 
 </page>

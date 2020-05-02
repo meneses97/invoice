@@ -36,28 +36,27 @@
                         <h4 class="list-group-item" style="background: #cce5ff">Estatisticas Gerais</h4>
 
                         <li class="list-group-item" value="">
-                            <a href="productos.php" target="frm_content" style=""> <?php echo 'Total Produtos';?>
+                            <a href="stock.php" target="frm_content" style=""> <?php echo 'Total Inventario';?>
                                 <span class="pull-right badge"> <?php echo get_count('products','id_producto') ; ?></span>
                             </a></li>
 
-                        <li class="list-group-item" value="">
-                            <a href="clientes.php"  style=""> <?php echo 'Total Clientes';?>
-                                <span class="pull-right badge"> <?php echo get_count('clientes','id_cliente') ?></span>
-                            </a></li>
 
                         <li class="list-group-item" value="">
-                            <a href="usuarios.php"  style=""> <?php echo 'Total Vendedores';?>
+                            <a href="usuarios.php"  style=""> <?php echo 'Total Utilizadores';?>
                                 <span class="pull-right badge"> <?php echo get_count('users','user_id') ?></span>
                             </a></li>
 
+
                         <li class="list-group-item" value="">
-                            <a href="vendas.php"  style=""> <?php echo 'Total Vendas';?>
-                                <span class="pull-right badge"> <?php echo get_count('vendas','id_venda') ?></span>
+                            <a href="gabinete.php" style=""> <?php echo 'Total Gabinetes';?>
+                                <span class="pull-right badge">
+                                    <?php echo get_count('gabinete','idgabinete') ?></span>
                             </a></li>
 
                         <li class="list-group-item" value="">
-                            <a href="facturas.php" style=""> <?php echo 'Total Facturas';?>
-                                <span class="pull-right badge"> <?php echo get_count('facturas','id_factura') ?></span>
+                            <a href="categorias.php" style=""> <?php echo 'Total de Categorias';?>
+                                <span class="pull-right badge">
+                                    <?php echo get_count('categorias','id_categoria') ?></span>
                             </a></li>
 
                     </ul>
@@ -66,34 +65,30 @@
 
                     <ul class="list-group alert-warning">
 
-                        <h4 class="list-group-item alert alert-danger " style="background: #cce5ff">ANALISE DE STOCK</h4>
+                        <h4 class="list-group-item alert alert-danger " style="background: #cce5ff">ANALISE DE BENS</h4>
 
                         <li class="list-group-item" value="">
-                            <strong   style=""> <?php echo 'Stock Minimo';?>
+                            <strong   style=""> <?php echo 'Bom Estado';?>
                                 <span class="pull-right badge"> <?php echo get_count('products','id_producto') ; ?></span>
                             </strong></li>
 
                         <li class="list-group-item" value="">
-                            <strong   style=""> <?php echo 'Stock Optimo';?>
-                                <span class="pull-right badge"> <?php echo get_count('clientes','id_cliente') ?></span>
-                            </strong></li>
-                        <li class="list-group-item" value="">
-                            <strong> <?php echo 'Fora do Prazo';?>
-                                <span class="pull-right badge"> <?php echo get_count('clientes','id_cliente') ?></span>
+                            <strong> <?php echo 'Fora de Uso';?>
+                                <span class="pull-right badge"> <?php echo get_count('products','id_producto') ?></span>
                             </strong></li>
 
                     </ul>
 
                     <div class="panel panel-success">
-                        <div class="panel-heading">ANALISE DE VENDAS</div>
+                        <div class="panel-heading">ANALISE DE CUSTOS</div>
                         <div class="panel-body">
-                            <span><strong class="text-info">Total das vendas:</strong><hr></span>
+                            <span><strong class="text-info">Total de Despesas:</strong><hr></span>
 
-                            <h3 class="text-right"><?php echo str_replace(",","",number_format(get_sun('vendas','total_venda'),2)); ?></h3>
+                            <h3 class="text-right"><?php setlocale(LC_MONETARY, 'en_US');   echo get_sun('products','precio_producto'); ?></h3>
 
-                            <span><hr><strong class="text-success">Total dos lucros:</strong><hr></span>
+                            <span><hr><strong class="text-success">Total de Percas:</strong><hr></span>
 
-                            <h3 class="text-right"><?php echo str_replace(",","",number_format(get_sun('vendas','total_venda'),2)); ?></h3>
+                            <h3 class="text-right"><?php echo str_replace(",","",number_format(get_sun('products','precio_producto'),2)); ?></h3>
 
                         </div>
                         <div class="panel-footer"><span class="glyphicon glyphicon-shopping-cart"></span>
@@ -130,7 +125,7 @@
                                         ['Dez',  530]
                                     ]);
 
-                                    var options = {title: 'ANALISE DE VENDAS EFECTUAS POR MES'};
+                                    var options = {title: 'ANALISE DE DESPESAS EFECTUAS /MES'};
                                     // Instantiate and draw the chart.
                                     var chart = new google.visualization.ColumnChart
                                     (document.getElementById('containers'));
@@ -146,7 +141,7 @@
                                     <div class="row ">
                                         <br>
                                        <hr>
-                                        <strong>ANALISE DE STOCK/PRODUTO</strong>
+                                        <strong>ANALISE DE STOCK DOS BENS</strong>
                                         <div class='col-md-4 pull-right'>
 
                                             <input type="hidden" name="id_categoria" id="id_categoria" value="all">

@@ -1,28 +1,29 @@
 <?php
 	include('is_logged.php');//Archivo verifica que el usario que intenta acceder a la URL esta logueado
 	/*Inicia validacion del lado del servidor*/
-	if (empty($_POST['codigo'])) {
-           $errors[] = "Codigo Vazio";
-        } else if (!empty($_POST['codigo'])){
+	if (empty($_POST['mod_id'])) {
+           $errors[] = "ID vazío";
+        }else if (empty($_POST['mod_gabinete'])) {
+           $errors[] = "Nome vazio";
+        }  else if (
+			!empty($_POST['mod_id']) &&
+			!empty($_POST['mod_gabinete'])
+		){
 		/* Connect To Database*/
-
 		require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
 		require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
 		// escaping, additionally removing everything that could be (html/javascript-) code
-		$nombre=mysqli_real_escape_string($con,(strip_tags($_POST["codigo"],ENT_QUOTES)));
-		$descripcion=mysqli_real_escape_string($con,(strip_tags($_POST["descricao"],ENT_QUOTES)));
-		$date_added=date("Y-m-d H:i:s");
+		$codigo=mysqli_real_escape_string($con,(strip_tags($_POST["mod_gabinete"],ENT_QUOTES)));
+		$descripcion=mysqli_real_escape_string($con,(strip_tags($_POST["mod_descripcion"],ENT_QUOTES)));
 
-		$sql="INSERT INTO gabinete(codigo, descricao, dataadded) 
-                VALUES ('$nombre','$descripcion','$date_added')";
-		$query_new_insert = mysqli_query($con,$sql);
-
-			if ($query_new_insert){
-				$messages[] = "Gabinete registado com sucesso.";
+		$id_categoria=intval($_POST['mod_id']);
+		$sql="UPDATE gabinete set codigo='".$codigo."', descricao='".$descripcion."' WHERE idgabinete='".$id_categoria."'";
+		$query_update = mysqli_query($con,$sql);
+			if ($query_update){
+				$messages[] = "Gabinete actualizada com sucesso.";
 			} else{
-				$errors []= "Problema no cadastro de dados.".mysqli_error($con);
+				$errors []= "Problemas com banco de dados.".mysqli_error($con);
 			}
-
 		} else {
 			$errors []= "Error desconhecido.";
 		}

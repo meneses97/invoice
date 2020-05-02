@@ -17,8 +17,12 @@
 				Email: <?php echo get_row('perfil','email', 'id_perfil', 1);?>
                 
             </td>
-			<td style="width: 25%;text-align:right">
-			RELATORIO - STOCK PRODUTOS
+			<td style="width: 25%;text-align:center">
+
+			            Visto
+                <br><br>
+
+                <hr>
 			</td>
 			
         </tr>

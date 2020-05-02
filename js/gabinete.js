@@ -43,15 +43,14 @@
 	
 $( "#guardarGabinete" ).submit(function( event ) {
   $('#guardar_datos').attr("disabled", true);
-  
  var parametros = $(this).serialize();
- alert(parametros);
+
 	 $.ajax({
 			type: "POST",
 			url: "ajax/novo_gabinete.php",
 			data: parametros,
 			 beforeSend: function(objeto){
-				$("#resultados_ajax").html("Menssagem: Carregando...");
+				$("#resultados_ajax").html("Mensagem: Carregando...");
 			  },
 			success: function(datos){
 			$("#resultados_ajax").html(datos);
@@ -62,13 +61,14 @@ $( "#guardarGabinete" ).submit(function( event ) {
   event.preventDefault();
 })
 
-$( "#editar_categoria" ).submit(function( event ) {
+$( "#editar_gabinete" ).submit(function( event ) {
   $('#actualizar_datos').attr("disabled", true);
   
  var parametros = $(this).serialize();
+
 	 $.ajax({
 			type: "POST",
-			url: "ajax/editar_categoria.php",
+			url: "ajax/editar_gabinete.php",
 			data: parametros,
 			 beforeSend: function(objeto){
 				$("#resultados_ajax2").html("Menssagem: Carregando...");
@@ -85,13 +85,14 @@ $( "#editar_categoria" ).submit(function( event ) {
 	
 	$('#myModal2').on('show.bs.modal', function (event) {
 	  var button = $(event.relatedTarget) // Button that triggered the modal
-	  var nombre = button.data('nombre') 
+	  var gabinete = button.data('gabinete')
 	  var descripcion = button.data('descripcion') 
 	  var id = button.data('id') 
 	  var modal = $(this)
-	  modal.find('.modal-body #mod_nombre').val(nombre)
+	  modal.find('.modal-body #mod_gabinete').val(gabinete)
 	  modal.find('.modal-body #mod_descripcion').val(descripcion) 
 	  modal.find('.modal-body #mod_id').val(id)
+
 	})
 		
 

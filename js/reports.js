@@ -33,6 +33,15 @@
 			VentanaCentrada('pdf/documentos/reports_pdf.php?id_categoria='+id_categoria+'&fp='+cp,'Relatorio','','1024','768','true');
 		}
 
+		function print_report_stock_geral(){
+
+			var id_categoria= $("#id_categoria").val();
+			var cp = $('#q').val();
+			//alert(id_categoria+'/'+codigo_produto);
+			VentanaCentrada('pdf/documentos/reports_geral.php?id_categoria='+id_categoria+'&fp='+cp,'Relatorio','','1024','768','true');
+		}
+
+
 
 		
 		

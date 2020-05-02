@@ -33,18 +33,23 @@
         $modelo=$_POST['mod_modelo'];
         $numero_serie=$_POST['mod_numeroSerie'];
         $vida_util=intval( $_POST['mod_vidaUtil']);
-        $garantia=$_POST['mod_garantia'];
+        $garantia =$_POST['mod_garantia'];
         $observacao=$_POST['mod_observacao'];
-//        $data_compra=date($_POST['dataCompra']);
-        $ano_fabrico=intval($_POST['mod_anoFabrico']);
-        $idgabinete=intval($_POST['mod_gabinete']);
-        //$status_producto=$_POST['status_producto'];
+        $data_compra= date($_POST['mod_dataCompra']);
+        $ano_fabrico= intval($_POST['mod_anoFabrico']);
 
-		$sql="UPDATE products SET idgabinete='".$idgabinete."', ano_fabrico='".$ano_fabrico."', observacao='".$observacao."', garantia='".$garantia."', vida_util='".$vida_util."', numero_serie='".$numero_serie."', modelo='".$modelo."', fabricante='".$fabricante."', codigo_producto='".$codigo."', nombre_producto='".$nombre."',
-		 id_categoria='".$categoria."', precio_producto='".$precio_venta."', stock='".$stock."'
-		  WHERE id_producto='".$id_producto."'";
+        $idgabinete= intval($_POST['mod_gabinete']);
+        $status_producto = $_POST['status_producto'];
+
+		$sql="UPDATE products SET idgabinete='".$idgabinete."', ano_fabrico='".$ano_fabrico."', 
+		        observacao='".$observacao."', garantia='".$garantia."', vida_util='".$vida_util."',
+		        numero_serie='".$numero_serie."', modelo='".$modelo."', fabricante='".$fabricante."', 
+		        codigo_producto='".$codigo."', nombre_producto='".$nombre."',
+		        id_categoria='".$categoria."', precio_producto='".$precio_venta."', 
+		        stock='".$stock."' WHERE id_producto='".$id_producto."'";
 
 		$query_update = mysqli_query($con,$sql);
+
 			if ($query_update){
 				$messages[] = "Producto actualizado com sucesso";
 			} else{
@@ -53,7 +58,7 @@
 		} else {
 			$errors []= "Error desconhecido.";
 		}
-		
+
 		if (isset($errors)){
 			
 			?>

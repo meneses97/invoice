@@ -22,12 +22,13 @@
 	<?php
 	include("navbar.php");
 	?>
-	
     <div class="container">
 	<div class="panel panel-success">
 		<div class="panel-heading">
 		    <div class="btn-group pull-right">
-				<button type='button' class="btn btn-success" data-toggle="modal" data-target="#nuevoProducto"><span class="glyphicon glyphicon-plus" ></span> Novo Produto</button>
+				<button type='button' class="btn btn-success"
+                        data-toggle="modal" data-target="#nuevoProducto">
+                    <span class="glyphicon glyphicon-plus" ></span> Registar Entrada</button>
 			</div>
 			<h4><i class='glyphicon glyphicon-search'></i> CONSULTAR INVENTARIO</h4>
 		</div>

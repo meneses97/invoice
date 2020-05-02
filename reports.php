@@ -29,11 +29,13 @@
 
 			<div class="form-horizontal" role="form" id="datos">
 				<div class="row">
+
                     <div class='col-md-3'>
-                        <label>Filtrar por Codigo ou Nome </label>
+                        <label>Filtrar/Codigo ou Nome </label>
                         <input type="text" class="form-control" id="q" placeholder="Código ou nome do produto" onkeyup='load(1);'>
                     </div>
-					<div class='col-md-3'>
+
+					<div class='col-md-5'>
 						<label><i class='glyphicon glyphicon-search'></i> *Filtrar por categoría</label>
 						<select class='form-control' name='id_categoria' id='id_categoria' onchange="load(1);">
 							
@@ -50,12 +52,20 @@
 							?>
 						</select>
 					</div>
-                    <div class="col col-md-3 pull-right">
+                    <div class="col col-md-4 pull-right">
                         <label>&nbsp;</label>
-                        <button onclick="print_report_stock()" class="btn btn-primary bnt-sm pull-right" id="print_reports"> <i class='glyphicon glyphicon-print'></i> Imprimir</button>
+
+                        <button onclick="print_report_stock_geral()"
+                                class="btn btn-info bnt-sm"
+                                id="print_reports"> <i class='glyphicon glyphicon-print'></i> Relatorio Geral</button>
+
+                        <span> </span><button onclick="print_report_stock()"
+                                              class="btn btn-info bnt-sm
+"
+                                id="print_reports"> <i class='glyphicon glyphicon-print'></i> Relatorio/Categoria</button>
                     </div>
 
-					<div class='col-md-4 text-center'>
+					<div class='col-md-2 text-center'>
 						<span id="loader"></span>
 					</div>
 				</div>

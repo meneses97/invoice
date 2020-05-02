@@ -38,8 +38,9 @@
 
               <ul class="dropdown-menu">
                   <li class="<?php if (isset($active_productos)){echo $active_productos;}?>"><a href="stock.php"><i class='glyphicon glyphicon-tags'> </i> &nbsp; Gestão de Bens</a></li>
-                  <li class="<?php if (isset($active_categoria)){echo $active_categoria;}?>"><a href="categorias.php"><i class='glyphicon glyphicon-tags'> </i>&nbsp; Categorias de Bens</a></li>
-                  <li class="<?php if (isset($active_gabiente)){echo $active_gabiente;}?>"><a href="gabinete.php"><i class='glyphicon glyphicon-tags'> </i>&nbsp; Gabinetes ou Salas</a></li>
+                  <li class="<?php if (isset($active_bens)){echo $active_bens;}?>"><a href="categorias.php"><i class='glyphicon glyphicon-tags'> </i>&nbsp; Categorias de Bens</a></li>
+                  <li class="<?php if (isset($active_gabiente)){echo $active_gabiente;}?>">
+                      <a href="gabinete.php"><i class='glyphicon glyphicon-tags'> </i>&nbsp; Gestão de Gabinetes</a></li>
 
               </ul>
 

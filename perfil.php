@@ -14,7 +14,7 @@
 	$active_clientes="";
 	$active_usuarios="";	
 	$active_perfil="active";	
-	$title="Configuración | Simple Invoice";
+	$title="Configuração | Inventario";
 	
 	$query_empresa=mysqli_query($con,"select * from perfil where id_perfil=1");
 	$row=mysqli_fetch_array($query_empresa);

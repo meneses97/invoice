@@ -1,10 +1,5 @@
 <?php
 
-	/*-------------------------
-	Autor: Obed Alvarado
-	Web: obedalvarado.pw
-	Mail: info@obedalvarado.pw
-	---------------------------*/
 	include('is_logged.php');//Archivo verifica que el usario que intenta acceder a la URL esta logueado
 	/* Connect To Database*/
 	require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
@@ -20,7 +15,7 @@
 			?>
 			<div class="alert alert-success alert-dismissible" role="alert">
 			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			  <strong>Aviso!</strong> Datos eliminados exitosamente.
+			  <strong>Aviso!</strong> Dados Elinados com sucesso.
 			</div>
 			<?php 
 		}else {
@@ -87,7 +82,7 @@
 					<th>Nome</th>
 					<th>Descrição</th>
 					<th>Data de Regito</th>
-					<th class='text-right'>Acçõe</th>
+					<th class='text-right'>Acções</th>
 					
 				</tr>
 				<?php

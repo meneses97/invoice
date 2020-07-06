@@ -65,7 +65,7 @@ if ($login->isUserLoggedIn() == true) {
             <!-- NAVBAR ITEMS END -->
             <!-- SHOW BUTTON -->
             <div class="navbar-buttons mbr-section-btn">
-                <a class="btn btn-md btn-black mbr-bold display-7" href="">INICIAR SISTEMA</a></div>
+                <a class="btn btn-md btn-black mbr-bold display-7" href="">Autenticar</a></div>
             <!-- SHOW BUTTON END -->
         </div>
     </amp-sidebar>
@@ -168,7 +168,7 @@ if ($login->isUserLoggedIn() == true) {
 
                     <div class="field mbr-col-sm-12 mbr-col" >
                         <button type="submit" class="btn btn-success display-4 btn-signin"
-                                name="login" id="submit">INICIAR SISTEMA</button>
+                                name="login" id="submit">AUTENTICAR</button>
                     </div>
                 </div>
 

@@ -114,7 +114,7 @@
                               <th> Codigo </th>
                           <th>Produto</th>
                           <th>Qtd. Stock</th>
-                              <th>Preço de Venda</th>
+                              <th>Preço de Compra</th>
                           </tr>
                           <tr>
                               <td> <span class="item-number"><?php echo $row['codigo_producto'];?></span></td>
@@ -146,7 +146,7 @@
 							?>
 						<div class="alert alert-success alert-dismissible" role="alert">
 						  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						  <strong>Aviso!</strong> Dados procesados com suceso.
+						  <strong>Aviso!</strong> Dados procesados com sucesso.
 						</div>	
 							<?php
 						}

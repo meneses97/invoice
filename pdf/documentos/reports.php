@@ -24,7 +24,7 @@
 	$count=mysqli_num_rows($sql_count);
 	if ($count==0)
 	{
-	echo "<script>alert('Não existem produtos adicionados ao relatorio')</script>";
+	echo "<script>alert('Não existem items adicionados ao relatorio')</script>";
 	echo "<script>window.close();</script>";
 	exit;
 	}

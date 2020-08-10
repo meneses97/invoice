@@ -74,78 +74,51 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
         </tr>
 
     </table>
-	<br>
+    <br>
 
-    <?php
-        $sql_r = 'SELECT  products.id_categoria, products.idgabinete, 
-categorias.nombre_categoria, gabinete.codigo, gabinete.descricao
-FROM products INNER JOIN categorias ON products.id_categoria = categorias.id_categoria
-INNER JOIN gabinete ON gabinete.idgabinete = products.idgabinete
- GROUP BY products.id_categoria, products.idgabinete';
+    <div style="background: #2c3e50; width: 100%; color:white" >
+        <?php echo get_row("gabinete",'descricao',$srl,$session_id)?></div>
+    <br>
+
+    <table cellspacing="0" style="width: 100%; text-align: left; font-size: 10pt;">
+
+        <tr>
+            <th style="width: 15%;" class='midnight-blue'>Codigo</th>
+            <th style="width: 50%;" class='midnight-blue'>Descrição do Bem</th>
+            <th style="width: 15%;" class='midnight-blue'>Quantidade</th>
+            <th style="width: 20%;" class='midnight-blue'>Data de Entrada</th>
+        </tr>
+
+        <?php
+
+        $sql_r = "SELECT * FROM products INNER JOIN gabinete ON gabinete.idgabinete = products.idgabinete
+ where  products.status_producto = 1 AND products.$srl=$session_id";
 
         $linha = mysqli_query($con, $sql_r);
-    while ($rl=mysqli_fetch_array($linha)){
-    ?>
-        <div style="background: #e3e3e3; padding: 7px;"><strong>
-            <?php echo $rl['nombre_categoria'].' /'.strtoupper($rl['descricao']) ?></strong></div>
-  
-    <table cellspacing="0" style="width: 100%; text-align: left; font-size: 10pt;">
+
+        //echo $sql_r;
+
+        while ($rl = mysqli_fetch_array($linha)) {
+            $nums = 1;
+        if (($nums % 2) == 0) {
+            $clase = "clouds";
+        } else {
+            $clase = "silver";
+        }
+
+        ?>
         <tr>
-            <th style="width: 15%;"  class='midnight-blue'>Codigo</th>
-            <th style="width: 50%;"  class='midnight-blue'>Descrição do Bem</th>
-            <th style="width: 15%;"  class='midnight-blue'>Quantidade</th>
-            <th style="width: 20%;"  class='midnight-blue'>Data de Entrada</th>
-        </tr>
-<?php
-$nums=1;
-$cod_gabinete = $rl['idgabinete'];
-$cod_categoria = $rl['id_categoria'];
-
-$sql = "select * from products where status_producto = 1 
-AND products.id_categoria='$cod_categoria' AND products.idgabinete='$cod_gabinete'";
-
-if ($session_id != 'all'){
-    $sql.=" AND products.id_categoria='$session_id'";
-}
-
-
-if (is_string($filtro_producto)){
-    $sql.=" AND products.nombre_producto LIKE '%".$filtro_producto."%'";
-}else{
-    $sql.=" AND products.codigo_producto LIKE '%".$filtro_producto."%'";
-}
-
-$results_x=mysqli_query($con, $sql);
-while ($row=mysqli_fetch_array($results_x))
-	{
-        $id_producto = $row['id_producto'];
-        $codigo_producto = $row['codigo_producto'];
-        $nombre_producto = $row['nombre_producto'];
-        $data_entrada = $row['date_added'];
-        $stock = $row['stock'];
-
-
-	if (($nums%2) == 0){
-		$clase="clouds";
-	} else {
-		$clase="silver";
-	}
-
-	?>
-        <tr>
-            <td class='<?php echo $clase;?>' style="width: 15%; text-align: left"><?php echo $rl['codigo'] .' /'.$codigo_producto  ?></td>
-            <td class='<?php echo $clase;?>' style="width: 50%; text-align: left"><?php echo $nombre_producto;?></td>
-            <td class='<?php echo $clase;?>' style="width: 15%; text-align: center"><?php echo $stock;?></td>
-            <td class='<?php echo $clase;?>' style="width: 20%; text-align: right"><?php echo $data_entrada;?></td>
+            <td class='<?php echo $clase; ?>' style="width: 15%; text-align: left"><?php echo $rl['codigo'] ?></td>
+            <td class='<?php echo $clase; ?>'
+                style="width: 50%; text-align: left"><?php echo $rl['nombre_producto']; ?></td>
+            <td class='<?php echo $clase; ?>' style="width: 15%; text-align: center"><?php echo $rl['stock']; ?></td>
+            <td class='<?php echo $clase; ?>'
+                style="width: 20%; text-align: right"><?php echo $rl['date_added']; ?></td>
         </tr>
 
-	<?php $nums++;
-	}
-
-?>
+        <?php $nums++; } ?>
     </table><br>
 
-<?php } ?>
     <div style="background: #e3e3e3; padding: 10px; width: 49%"><i style="font-size:11pt;text-align:left; ">Documento processado por computador</i></div>
 
 </page>

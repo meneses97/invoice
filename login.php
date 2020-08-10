@@ -14,7 +14,7 @@ if ($login->isUserLoggedIn() == true) {
 } else { ?>
 
     <!DOCTYPE html>
-    <html amp >
+    <html amp>
     <head>
         <!-- Site made with Mobirise Website Builder v4.12.3, https://mobirise.com -->
         <meta charset="UTF-8">

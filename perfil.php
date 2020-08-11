@@ -70,7 +70,7 @@
                       </tr>
                       <tr>
                         <td>Correio electrónico:</td>
-                        <td><input type="email" class="form-control input-sm" name="email" value="<?php echo $row['email']?>" ></td>
+                        <td><input type="text" class="form-control input-sm" name="email" value="<?php echo $row['email']?>" ></td>
                       </tr>
 					  <tr>
                         <td>IVA (%):</td>

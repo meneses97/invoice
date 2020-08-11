@@ -24,7 +24,7 @@
 	$count=mysqli_num_rows($sql_count);
 	if ($count==0)
 	{
-	echo "<script>alert('Não existem items adicionados ao relatorio')</script>";
+	echo "<script>alert('Não existem produtos adicionados ao relatorio')</script>";
 	echo "<script>window.close();</script>";
 	exit;
 	}
@@ -50,7 +50,7 @@
         // convert
         $html2pdf->writeHTML($content, isset($_GET['vuehtml']));
         // send the PDF
-        $html2pdf->Output('Factura.pdf');
+        $html2pdf->Output('inventario '.date("Y-m-d H:i:s").'.pdf');
     }
     catch(HTML2PDF_exception $e) {
         echo $e;

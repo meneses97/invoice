@@ -31,15 +31,15 @@
 				<div class="row">
 
                     <div class='col-md-3'>
-                        <label>Codigo ou Nome </label>
+                        <label>Filtrar/Codigo ou Nome </label>
                         <input type="text" class="form-control" id="q" placeholder="Código ou nome do produto" onkeyup='load(1);'>
                     </div>
 
-					<div class='col-md-3'>
-						<label><i class='glyphicon glyphicon-search'></i> */Categoría</label>
-						<select class='form-control' name='id_categoria' id='id_categoria' onchange="load(1,0);">
+					<div class='col-md-5'>
+						<label><i class='glyphicon glyphicon-search'></i> *Filtrar por categoría</label>
+						<select class='form-control' name='id_categoria' id='id_categoria' onchange="load(1);">
 							
-                            <option value="0">Todos Produtos</option>
+                            <option value="all">Todos Produtos</option>
 							<?php
                             $id_categoria = "";
 							$query_categoria=mysqli_query($con,"select * from categorias order by nombre_categoria");
@@ -52,38 +52,17 @@
 							?>
 						</select>
 					</div>
-
-                    <div class='col-md-3'>
-                        <label><i class='glyphicon glyphicon-search'></i> *Por Secção</label>
-                        <select class='form-control' name='id_gabinete' id='id_gabinete' onchange="load(1,1);">
-
-                            <option value="0">Todos Produtos</option>
-                            <?php
-                            $id_categoria = "";
-                            $query_categoria=mysqli_query($con,"select * from gabinete order by gabinete.descricao");
-
-                            while($rw=mysqli_fetch_array($query_categoria))	{
-                                ?>
-                                <option value="<?php echo $rw['idgabinete'];?>"><?php echo $rw['descricao'];?></option>
-                                <?php
-                            }
-                            ?>
-                        </select>
-                    </div>
-
-                    <input type="hidden" name="controlador" id="controlador" value="">
-
-                    <div class="col col-md-3 pull-right">
+                    <div class="col col-md-4 pull-right">
                         <label>&nbsp;</label>
 
                         <button onclick="print_report_stock_geral()"
                                 class="btn btn-info bnt-sm"
-                                id="print_reports"> Relatorio Geral</button>
+                                id="print_reports"> <i class='glyphicon glyphicon-print'></i> Relatorio Geral</button>
 
                         <span> </span><button onclick="print_report_stock()"
                                               class="btn btn-info bnt-sm
 "
-                                id="print_reports">/ Categoria</button>
+                                id="print_reports"> <i class='glyphicon glyphicon-print'></i> Relatorio/Categoria</button>
                     </div>
 
 					<div class='col-md-2 text-center'>

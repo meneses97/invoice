@@ -11,22 +11,12 @@
 	if($action == 'ajax'){
 		// escaping, additionally removing everything that could be (html/javascript-) code
          $q = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q'], ENT_QUOTES)));
-
-         $id_categoria =intval($_REQUEST['id_categoria']);
-         $ctr = intval($_REQUEST['ctr']);
-         $id_categoriaORid_codigo = '';
-
-         if ($ctr == 0){
-             $id_categoriaORid_codigo ='id_categoria';
-         }else{
-             $id_categoriaORid_codigo ='idgabinete';
-         }
-
-		 $aColumns = array('nombre_producto','codigo_producto');//Columnas de busqueda
+		 $id_categoria =intval($_REQUEST['id_categoria']);
+		 $aColumns = array('id_categoria','nombre_producto','codigo_producto');//Columnas de busqueda
 		 $sTable = "products";
 		 $sWhere = "";
 
-		 $sWhere = "WHERE (";
+			$sWhere = "WHERE (";
 			for ( $i=0 ; $i<count($aColumns) ; $i++ )
 			{
 				$sWhere .= $aColumns[$i]." LIKE '%".$q."%' OR ";
@@ -35,9 +25,8 @@
 			$sWhere .= ')';
 		
 		if ($id_categoria>0){
-			$sWhere .=" AND $id_categoriaORid_codigo='$id_categoria'";
+			$sWhere .=" and id_categoria='$id_categoria'";
 		}
-
 		$sWhere.=" order by id_producto desc";
 		include 'pagination.php'; //include pagination file
 		//pagination variables
@@ -55,8 +44,6 @@
 		$sql="SELECT * FROM  $sTable $sWhere LIMIT $offset,$per_page";
 		$query = mysqli_query($con, $sql);
 		//loop through fetched data
-
-        //echo  $sql;
 
 		if ($numrows>0) {?>
             <div class="table-responsive">
